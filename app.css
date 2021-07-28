@@ -1,0 +1,51 @@
+
+        header {
+            text-align: center;
+        }
+        main {
+            display: grid;
+            grid-template-columns: 300px;
+            justify-content: center;
+        }
+
+        .income-expenses-container {
+            display: flex;
+        }
+
+        .income-expenses-container > div {
+            flex: 1;
+            border: 1px solid;
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        .a {
+            border: 1px solid red;
+            background-color: red;
+            color: #fff;
+            margin-bottom: 2px;
+            list-style-type: none;
+            cursor: pointer;
+            display: inline-block;
+            visibility: hidden;
+            opacity: 0;        
+            transition: visibility 0s linear 0.1s, opacity 0.33s linear;
+
+        }
+
+        li:hover .a{
+            visibility: visible;
+            opacity: 1;
+            transition-delay: 0s;
+
+        }
+
+        .income-li {
+            border: 1px solid green;
+        }
+
+        .expense-li {
+            border: 1px solid red;
+        }

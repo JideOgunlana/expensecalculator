@@ -15,6 +15,8 @@ let expenseSum = 0;
 
 let deletedvalue;
 let undeletedvalue = 0;
+totalIncome.innerHTML = "&#8358; 0";
+totalExpenses.innerHTML = "&#8358; 0";
 
 class Item {
     constructor(desc, income, expense) {
@@ -42,17 +44,17 @@ btn.addEventListener('click', (x) => {
         {
             incomeArr.push(income.value); // array of values entered in the income field
             // adds to the list an income
-            list.insertAdjacentHTML("beforeend", `<li class="income-li"><span class="a">X</span>${itemDesc.value} &nbsp; ${income.value}</li>`);
+            list.insertAdjacentHTML("beforeend", `<li class="income-li"><span class="a">X</span> ${itemDesc.value} &nbsp; &#8358; ${income.value}</li>`);
         }
         if (expense.value != "")
         {
             expenseArr.push(expense.value); // array of values entered in the expense field
             // adds to the list an expense 
-            list.insertAdjacentHTML("beforeend", `<li class="expense-li"><span class="a">X</span>${itemDesc.value} &nbsp; ${expense.value}</li>`);
+            list.insertAdjacentHTML("beforeend", `<li class="expense-li"><span class="a">X</span> ${itemDesc.value} &nbsp; &#8358; ${expense.value}</li>`);
         }
         // helper fxns are invoked and total income and total expenses are updated
-        totalIncome.innerHTML = myIncomeTotal(income.value, expense.value);
-        totalExpenses.innerHTML = myExpenseTotal(expense.value);
+        totalIncome.innerHTML = "&#8358; " + myIncomeTotal(income.value, expense.value);
+        totalExpenses.innerHTML = "&#8358; " +  myExpenseTotal(expense.value);
         // totalIncome.insertAdjacentHTML("beforeend", `<div>${myIncomeTotal(income.value, expense.value)}</div>`)
         console.log(itemArr, incomeArr, expenseArr);
 
@@ -147,7 +149,7 @@ list.addEventListener('click', function (e) {
                 console.log(incomeArr[i]);
                 deletedvalue = incomeArr[i];
                 incomeArr.splice(i,1);
-                totalIncome.innerHTML = myIncomeTotal(-deletedvalue,undeletedvalue);
+                totalIncome.innerHTML = "&#8358; " + myIncomeTotal(-deletedvalue,undeletedvalue);
             }
         }
 
@@ -174,8 +176,8 @@ list.addEventListener('click', function (e) {
                 console.log(expenseArr[i]);
                 deletedvalue = expenseArr[i];
                 expenseArr.splice(i,1);
-                totalIncome.innerHTML = myIncomeTotal(undeletedvalue,-deletedvalue);
-                totalExpenses.innerHTML = myExpenseTotal(-deletedvalue);
+                totalIncome.innerHTML = "&#8358; " + myIncomeTotal(undeletedvalue,-deletedvalue);
+                totalExpenses.innerHTML = "&#8358; " + myExpenseTotal(-deletedvalue);
             }
         }
         console.log(myarray);

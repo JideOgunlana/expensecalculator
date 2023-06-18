@@ -47,6 +47,10 @@ currencyForm.addEventListener('change', (e) => {
     currencyChanged(currency);
 })
 
+let yourBalanaceColor = () => {
+    (incomeSum > 0) ? wallet.className = "wallet positiveBalance" : (incomeSum < 0) ? wallet.className = "wallet negativeBalance" : wallet.className = "wallet";
+}
+
 let currencyChanged = (currency) => {
     currencyFormatter = new Intl.NumberFormat(
         'en-US', {
@@ -78,12 +82,14 @@ let currencyChanged = (currency) => {
                     item.innerHTML = `<span class="a">X</span>${mod[0]} ${mod[1]}`;
                     totalIncome.innerHTML = currencyFormatter.format(incomeTotal);
                     wallet.innerHTML = currencyFormatter.format(incomeSum);
+                    yourBalanaceColor();
                 }
                 else {
                     mod[1] = `${currencyFormatter.format(itemArr[index].expense)}`;
                     item.innerHTML = `<span class="a">X</span>${mod[0]} ${mod[1]}`;
                     totalExpenses.innerHTML = currencyFormatter.format(expenseSum);
                     wallet.innerHTML = currencyFormatter.format(incomeSum);
+                    yourBalanaceColor();
                 }
                 index++;
             }
@@ -104,6 +110,11 @@ btn.addEventListener('click', (x) => {
             // items.expense = expense.value;
             // itemArr.push(items);
             // }
+        if (income.value != "" && expense.value != "") {
+            income.value = "";
+            expense.value = "";
+            return;
+        }
         if (income.value != "" && parseFloat(income.value) > 0)
         {
             itemArr.push(new Item(itemDesc.value, income.value, expense.value)); //creates an object for new entries passed to the array of item
@@ -123,7 +134,8 @@ btn.addEventListener('click', (x) => {
         // helper fxns are invoked and total income and total expenses are updated
         if (validValue) {
             totalIncome.innerHTML = `${currencyFormatter.format(myIncome(income.value))} `;
-            wallet.innerHTML = `${currencyFormatter.format(myIncomeTotal(income.value, expense.value))}`
+            wallet.innerHTML = `${currencyFormatter.format(myIncomeTotal(income.value, expense.value))}`;
+            yourBalanaceColor();
             totalExpenses.innerHTML = `${currencyFormatter.format(myExpenseTotal(expense.value))} `;
             // totalIncome.insertAdjacentHTML("beforeend", `<div>${myIncomeTotal(income.value, expense.value)}</div>`)
             validValue = false;
@@ -142,7 +154,8 @@ btn.addEventListener('click', (x) => {
 
 //calculates the total income 
 let myIncomeTotal = (myIncome, mySpendings) => {
-    incomeSum = incomeSum + (myIncome - mySpendings) ;
+    console.log(incomeSum);
+    incomeSum = incomeSum + (myIncome - mySpendings);
     return incomeSum;  
 }
 
@@ -214,8 +227,9 @@ list.addEventListener('click', function (e) {
             {
                 deletedvalue = incomeArr[i];
                 incomeArr.splice(i,1);
-                totalIncome.innerHTML = `${currencyFormatter.format(myIncomeTotal(-deletedvalue))}`;
+                totalIncome.innerHTML = `${currencyFormatter.format(myIncome(-deletedvalue))}`;
                 wallet.innerHTML = `${currencyFormatter.format(myIncomeTotal(-deletedvalue,undeletedvalue))}`;
+                yourBalanaceColor();
             }
         }
 
@@ -239,8 +253,9 @@ list.addEventListener('click', function (e) {
                 deletedvalue = expenseArr[i];
                 expenseArr.splice(i,1);
                 totalIncome.innerHTML = `${currencyFormatter.format( myIncome(undeletedvalue) )}`;
-                wallet.innerHTML = `${currencyFormatter.format( myIncomeTotal(undeletedvalue,-deletedvalue) )}`;
                 totalExpenses.innerHTML = `${currencyFormatter.format( myExpenseTotal(-deletedvalue) )}`;
+                wallet.innerHTML = `${currencyFormatter.format( myIncomeTotal(undeletedvalue,-deletedvalue) )}`;
+                yourBalanaceColor();
             }
         }
         e.target.parentNode.remove();

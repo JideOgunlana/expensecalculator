@@ -14,56 +14,58 @@
     <header>
         <h1>Expenses Calculator</h1>
     </header>
-    <main class="container">
-        <div>
-            <h2>Your Balance</h2>
-            <p class="wallet">
+    <main>
+        <div class="container">
+            <div>
+                <h2>Your Balance</h2>
+                <p class="wallet">
 
-            </p>
+                </p>
+            </div>
+            <section class="income-expenses-container">
+                <div>
+                    Income
+                    <div  class="totalincome">
+                        
+                    </div>
+                </div>
+                <div>
+                    Expenses
+                    <div class="totalexpenses">
+                        
+                    </div>
+                </div>
+                
+                <select name="currency_list" class="currency_form">
+                    <option value="USD" selected >USD</option>
+                    <option value="EUR" >EUR</option>
+                    <option value="GBP" >GBP</option>
+                    <option value="NGN" >NGN</option>
+                </select>
+            </section>
+            <section>
+                <ul class="list">
+
+                </ul>
+            </section>
+            <section>
+                <div class="input-fields">
+                    <label for="itemdesc">Description of item</label><br>
+                    <input type="text" name="" id="itemdesc" value="">
+                </div>
+                <div class="input-fields">
+                    <label for="income">Income</label><br>
+                    <input type="number" id="income" value="" oninput="disableInput()">
+                </div>
+                <div class="input-fields">
+                    <label for="expense">Expense</label><br>
+                    <input type="number" id="expense" value="" oninput="disableInput()">
+                </div>
+            </section>
+            <section>
+                <button>submit</button>
+            </section>
         </div>
-        <section class="income-expenses-container">
-            <div>
-                Income
-                <div  class="totalincome">
-                    
-                </div>
-            </div>
-            <div>
-                Expenses
-                <div class="totalexpenses">
-                    
-                </div>
-            </div>
-            
-            <select name="currency_list" class="currency_form">
-                <option value="USD" selected >USD</option>
-                <option value="EUR" >EUR</option>
-                <option value="GBP" >GBP</option>
-                <option value="NGN" >NGN</option>
-            </select>
-        </section>
-        <section>
-            <ul class="list">
-
-            </ul>
-        </section>
-        <section>
-            <div>
-                <label for="itemdesc">Description of item</label><br>
-                <input type="text" name="" id="itemdesc" value="">
-            </div>
-            <div>
-                <label for="income">Income</label><br>
-                <input type="number" id="income" value="" oninput="disableInput()">
-            </div>
-            <div>
-                <label for="expense">Expense</label><br>
-                <input type="number" id="expense" value="" oninput="disableInput()">
-            </div>
-        </section>
-        <section>
-            <button>submit</button>
-        </section>
     </main>
 
     <script src="app.js"></script>

@@ -1,56 +1,164 @@
 
-        header {
-            text-align: center;
-        }
-        main {
-            display: grid;
-            grid-template-columns: 300px;
-            justify-content: center;
-        }
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;700&display=swap');
 
-        .income-expenses-container {
-            display: flex;
-        }
+:root {
+    margin: 0;
+    padding: 0;
+    font-family: 'Ubuntu', sans-serif;
+    --border-color: #efefef;
+    --border-line: #444;
+    --green: hsl(120, 50%, 60%);
+    --red: hsl(0, 50%, 60%);
+}
 
-        .income-expenses-container > div {
-            flex: 1;
-            border: 1px solid;
-        }
+body,
+body * {
+    box-sizing: border-box;
+}
 
-        ul {
-            list-style-type: none;
-        }
+body {
+    font-family: Ubuntu;
+    margin: 0 auto;
+}
 
-        .a {
-            border: 1px solid red;
-            background-color: red;
-            color: #fff;
-            margin-bottom: 2px;
-            list-style-type: none;
-            cursor: pointer;
-            display: inline-block;
-            visibility: hidden;
-            opacity: 0;        
-            transition: visibility 0s linear 0.1s, opacity 0.33s linear;
+header {
+    text-align: center;
+}
 
-        }
+h2 ~ p {
+    font-size: 2rem;
+}
 
-        li:hover .a{
-            visibility: visible;
-            opacity: 1;
-            transition-delay: 0s;
+h2 ~ p.positiveBalance {
+    color: var(--green);
+}
 
-        }
+h2 ~ p.negativeBalance {
+    color: var(--red);
+}
 
-        .income-li {
-            border: 1px solid green;
-        }
 
-        .expense-li {
-            border: 1px solid red;
-        }
+main .container {
+    display: grid;
+    grid-template-columns: 300px;
+    justify-content: center;
+    border: 1px solid var(--border-color);
+    width: 500px;
+    margin: 0 auto;
+    box-shadow: 
+            10px 10px 10px var(--border-color),
+            -10px -10px 10px var(--border-color);
+    padding: 50px 10px;
+}
+
+.income-expenses-container {
+    display: flex;
+    padding: 20px;
+    justify-content: space-between;
+    border: 1px solid var(--border-color);
+    box-shadow: 
+    10px 10px 10px var(--border-color),
+    -10px -10px 10px var(--border-color);
+    
+}
+.income-expenses-container > div {
+    flex: 1;
+    text-align: center;
+}
+
+.income-expenses-container > div:first-child {
+    border-right: 1px solid var(--border-line);
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    row-gap: 5px;
+    flex: 1;
+    width: 100%;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+li {
+    width: 100%;
+    border: 1px solid var(--border-color);
+    box-shadow: 0px 5px 5px var(--border-color);
+    padding: 10px 0;
+}
+
+.a {
+    border: 1px solid red;
+    background-color: red;
+    color: #fff;
+    margin-bottom: 2px;
+    list-style-type: none;
+    cursor: pointer;
+    display: inline-block;
+    visibility: hidden;
+    opacity: 0;        
+    transition: visibility 0s linear 0.1s, opacity 0.33s linear;
+
+}
+
+li:hover .a{
+    visibility: visible;
+    opacity: 1;
+    transition-delay: 0s;
+
+}
+
+.income-li {
+    border-right: 3px solid green;
+}
+
+.expense-li {
+    border-right: 3px solid red;
+}
 
 
 .wallet {
     font-weight: 800;
+}
+
+label {
+    font-weight: 700;
+}
+
+select {
+    border: none;
+    outline: none;
+    background: transparent;
+}
+
+.totalincome {
+    color: var(--green);
+}
+
+.totalexpenses {
+    color: var(--red)
+}
+
+
+.input-fields {
+    display: flex;
+    flex-direction: column;
+}
+.input-fields input{
+    padding: 10px 20px;
+    margin: 5px 0 10px 0;
+    appearance: textfield;
+}
+
+section button {
+    width: 100%;
+    padding: 10px 0;
+    border: 2px solid hsl(250, 30%, 60%);
+    border-radius: 5px;
+}
+
+section button:hover {
+    background-color: hsl(250, 30%, 60%);
+    color: #fff;
 }

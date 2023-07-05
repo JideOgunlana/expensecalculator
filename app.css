@@ -99,7 +99,8 @@ li {
     visibility: hidden;
     opacity: 0;        
     transition: visibility 0s linear 0.1s, opacity 0.33s linear;
-
+    position: absolute;
+    left:-5px;
 }
 
 li:hover .a{
@@ -117,6 +118,12 @@ li:hover .a{
     border-right: 3px solid red;
 }
 
+.income-li, .expense-li {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    padding: 20px;
+}
 
 .wallet {
     font-weight: 800;
@@ -161,4 +168,8 @@ section button {
 section button:hover {
     background-color: hsl(250, 30%, 60%);
     color: #fff;
+}
+
+input:disabled {
+    cursor:not-allowed;
 }

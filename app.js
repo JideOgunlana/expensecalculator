@@ -76,17 +76,17 @@ let currencyChanged = (currency) => {
             let dupItemValue = item.innerText;
             
             if (dupItemValue) {
-                let mod = dupItemValue.split(" ");
+                let mod = dupItemValue.split("\n");
                 if (itemArr[index].income != "") {
                     mod[1] = `${currencyFormatter.format(itemArr[index].income)}`;
-                    item.innerHTML = `<span class="a">X</span>${mod[0]} ${mod[1]}`;
+                    item.innerHTML = `<span class="a">X</span><span class="item-description">${mod[0]}</span> ${mod[1]}`;
                     totalIncome.innerHTML = currencyFormatter.format(incomeTotal);
                     wallet.innerHTML = currencyFormatter.format(incomeSum);
                     yourBalanaceColor();
                 }
                 else {
                     mod[1] = `${currencyFormatter.format(itemArr[index].expense)}`;
-                    item.innerHTML = `<span class="a">X</span>${mod[0]} ${mod[1]}`;
+                    item.innerHTML = `<span class="a">X</span><span class="item-description">${mod[0]}</span> ${mod[1]}`;
                     totalExpenses.innerHTML = currencyFormatter.format(expenseSum);
                     wallet.innerHTML = currencyFormatter.format(incomeSum);
                     yourBalanaceColor();
@@ -102,14 +102,6 @@ btn.addEventListener('click', (x) => {
     // checks if the description field is not empty and at least one of the other fields is not
     if (itemDesc.value != "" && (income.value != "" || expense.value != ""))
     {
-    //  Checks each field individually and adds to its array values that are not an empty string
-        // if (itemDesc.value != "")
-        // {
-            // items.desc = itemDesc.value;
-            // items.income = income.value;
-            // items.expense = expense.value;
-            // itemArr.push(items);
-            // }
         if (income.value != "" && expense.value != "") {
             income.value = "";
             expense.value = "";
@@ -120,7 +112,7 @@ btn.addEventListener('click', (x) => {
             itemArr.push(new Item(itemDesc.value, income.value, expense.value)); //creates an object for new entries passed to the array of item
             incomeArr.push(income.value); // array of values entered in the income field
             // adds to the list an income
-            list.insertAdjacentHTML("beforeend", `<li class="income-li"><span class="a">X</span>${itemDesc.value} ${currencyFormatter.format(income.value)}</li>`);
+            list.insertAdjacentHTML("beforeend", `<li class="income-li"><span class="a">X</span><span class="item-description">${itemDesc.value}</span> ${currencyFormatter.format(income.value)}</li>`);
             validValue = true;
         }
         if (expense.value != "" && parseFloat(expense.value) > 0)
@@ -128,7 +120,7 @@ btn.addEventListener('click', (x) => {
             itemArr.push(new Item(itemDesc.value, income.value, expense.value)); //creates an object for new entries passed to the array of item
             expenseArr.push(expense.value); // array of values entered in the expense field
             // adds to the list an expense 
-            list.insertAdjacentHTML("beforeend", `<li class="expense-li"><span class="a">X</span>${itemDesc.value} ${currencyFormatter.format(expense.value)}</li>`);
+            list.insertAdjacentHTML("beforeend", `<li class="expense-li"><span class="a">X</span><span class="item-description">${itemDesc.value}</span> ${currencyFormatter.format(expense.value)}</li>`);
             validValue = true;
         }
         // helper fxns are invoked and total income and total expenses are updated
@@ -148,13 +140,15 @@ btn.addEventListener('click', (x) => {
             income.value = "";
         }
         expense.removeAttribute("disabled");
-        income.removeAttribute("disabled");   
+        income.removeAttribute("disabled");
+        itemDesc.value = "";
+        itemDesc.focus();
     }
 });
 
 //calculates the total income 
 let myIncomeTotal = (myIncome, mySpendings) => {
-    console.log(incomeSum);
+    // console.log(incomeSum);
     incomeSum = incomeSum + (myIncome - mySpendings);
     return incomeSum;  
 }
@@ -187,22 +181,11 @@ function disableInput() {
     }
 }
 
-// list.children
-// list.parentElement list.parentNode
-
 // deletes any item on the list and updates the total income
 list.addEventListener('click', function (e) {
     //checks the targeted span tag to delete the li element containing it 
     if (e.target.attributes.class.value == "a")
     {
-        // e.target.parentNode.remove()
-        // if(e.target.parentNode.attributes.class.value =="income-li")
-        // {
-        // }
-        // else if (e.target.parentNode.attributes.class.value == "expense-li")
-        // {
-        // }
-
         let i = 0;
         let myarray = [] // myarray is used as a counter to determine the position of income value targeted in order to delete and deduct this targeted income from the total income
         let myexparray = []; // works the same way to delete and deduct the targeted expense

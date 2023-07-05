@@ -11,7 +11,12 @@ Thanks for checking out this project.
 
 users should be able to:
 
-- View the optimal layout for the site depending on their device's screen size
+- add income/expense
+- calculate total expense
+- categorize expense
+- delete income/expense
+- have a visual representation of income/expense
+- view the optimal layout for the app depending on their device's screen size
 
 ## My process
 
